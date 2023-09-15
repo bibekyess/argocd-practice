@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/bibekyess/argocd-practice.git
     targetRevision: HEAD
-    path: dev
+    path: dev/k8s
   destination: 
     server: https://kubernetes.default.svc
     namespace: mlflow 
