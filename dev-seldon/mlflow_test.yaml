@@ -23,7 +23,7 @@ spec:
               timeoutSeconds: 3
     graph:
       implementation: MLFLOW_SERVER
-      modelUri: s3://mlflow/1/da04f8b655a2432a8968a48ee96d3666/artifacts/slearn-model #FIXME
+      modelUri: s3://mlflow/1/f887e3fb53d84967a25b6292186dc327/artifacts/sklearn-model #FIXME
       envSecretRefName: seldon-rclone-secret
       name: classifier
     name: default
