@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: seldon-serving
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/bibekyess/argocd-practice.git
+    targetRevision: HEAD
+    path: dev-seldon
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: seldon 
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true

@@ -1,0 +1,30 @@
+apiVersion: machinelearning.seldon.io/v1alpha2
+kind: SeldonDeployment
+metadata:
+  name: mlflow
+  namespace: seldon
+spec:
+  annotations:
+    seldon.io/executor: "true"
+  protocol: v2  # Activate the v2 protocol
+  name: mlflow
+  predictors:
+  - componentSpecs:
+     - spec:
+        containers:
+         - name: classifier
+           livenessProbe:
+              failureThreshold: 3
+              initialDelaySeconds: 240 # delay of 4 minutes before liveness probe starts checking
+              periodSeconds: 30
+              successThreshold: 1
+              tcpSocket:
+                port: http
+              timeoutSeconds: 3
+    graph:
+      implementation: MLFLOW_SERVER
+      modelUri: s3://mlflow/1/da04f8b655a2432a8968a48ee96d3666/artifacts/sklearn-model #FIXME
+      envSecretRefName: seldon-rclone-secret
+      name: classifier
+    name: default
+    replicas: 1
