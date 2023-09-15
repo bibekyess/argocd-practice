@@ -43,7 +43,7 @@ metadata:
   name: mlflow-deployment
   namespace: mlflow
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mlflow-server
